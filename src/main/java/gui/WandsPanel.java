@@ -43,14 +43,10 @@ public class WandsPanel extends JPanel {
         
         JButton refreshButton = new JButton("Обновить");
         refreshButton.addActionListener(e -> loadWands());
-        
-        JButton showAllButton = new JButton("Все палочки");
-        showAllButton.addActionListener(e -> showAllWands());
-        
+     
         buttonPanel.add(addButton);
         buttonPanel.add(sellButton);
         buttonPanel.add(refreshButton);
-        buttonPanel.add(showAllButton);
         
         add(buttonPanel, BorderLayout.NORTH);
         
@@ -240,42 +236,6 @@ public class WandsPanel extends JPanel {
             dialog.pack();
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(
-                this,
-                "Ошибка загрузки данных: " + e.getMessage(),
-                "Ошибка",
-                JOptionPane.ERROR_MESSAGE
-            );
-        }
-    }
-    
-    private void showAllWands() {
-        try {
-            List<Wand> allWands = dbManager.getAllWands();
-
-            String[] columnNames = {"ID", "Дата создания", "Цена", "Статус", "Владелец"};
-            Object[][] data = new Object[allWands.size()][5];
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-            for (int i = 0; i < allWands.size(); i++) {
-                Wand wand = allWands.get(i);
-                data[i][0] = wand.getId();
-                data[i][1] = wand.getCreationDate().format(formatter);
-                data[i][2] = wand.getPrice();
-                data[i][3] = wand.getStatus();
-                data[i][4] = (wand.getOwner() != null) ? 
-                    wand.getOwner().getFirstName() + " " + wand.getOwner().getLastName() : 
-                    "Нет владельца";
-            }
-
-            wandsTable.setModel(new DefaultTableModel(data, columnNames) {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            });
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(
                 this,

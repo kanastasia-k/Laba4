@@ -292,43 +292,6 @@ public class DatabaseManager {
             }
             return wands;
         }
-    
-        public List<Wand> getAllWands() throws SQLException {
-            List<Wand> wands = new ArrayList<>();
-            String sql = "SELECT w.*, wz.first_name, wz.last_name " +
-                         "FROM wands w " +
-                         "LEFT JOIN wizards wz ON w.wizard_id = wz.id";
-
-            try (Connection conn = getConnection();
-                 Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery(sql)) {
-
-                while (rs.next()) {
-                    Wand wand = new Wand();
-                    wand.setId(rs.getInt("id"));
-                    wand.setCreationDate(rs.getDate("creation_date").toLocalDate());
-                    wand.setPrice(rs.getDouble("price"));
-                    wand.setStatus(rs.getString("status"));
-                    wand.setWoodId(rs.getInt("wood_id"));
-                    wand.setCoreId(rs.getInt("core_id"));
-                    wand.setWizardId(rs.getInt("wizard_id"));
-                    wand.setSaleDate(rs.getDate("sale_date") != null ? 
-                        rs.getDate("sale_date").toLocalDate() : null);
-
-                    if (rs.getInt("wizard_id") > 0) {
-                        Wizard wizard = new Wizard();
-                        wizard.setId(rs.getInt("wizard_id"));
-                        wizard.setFirstName(rs.getString("first_name"));
-                        wizard.setLastName(rs.getString("last_name"));
-                        wand.setOwner(wizard);
-                    }
-
-                    wands.add(wand);
-                }
-            }
-            return wands;
-        }
-    
 
         public void addDelivery(Delivery delivery) throws SQLException {
             String sql = "INSERT INTO deliveries (delivery_date, supplier_name, is_seasonal) VALUES (?, ?, ?)";
