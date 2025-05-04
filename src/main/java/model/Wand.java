@@ -17,7 +17,7 @@ public class Wand {
     private String status; 
     private int woodId;
     private int coreId;
-    private Integer wizardId; 
+    private int wizardId; 
     private LocalDate saleDate;
     private Wizard owner;
     
@@ -43,20 +43,10 @@ public class Wand {
     public void setWoodId(int woodId) { this.woodId = woodId; }
     public int getCoreId() { return coreId; }
     public void setCoreId(int coreId) { this.coreId = coreId; }
-    public Integer getWizardId() { return wizardId; }
-    public void setWizardId(Integer wizardId) { this.wizardId = wizardId; }
+    public int getWizardId() { return wizardId; }
+    public void setWizardId(int wizardId) { this.wizardId = wizardId; }
     public LocalDate getSaleDate() { return saleDate; }
     public void setSaleDate(LocalDate saleDate) { this.saleDate = saleDate; }
     public Wizard getOwner() { return owner; }
     public void setOwner(Wizard owner) { this.owner = owner; }
-
-    @Override
-    public String toString() {
-        String ownerInfo = (owner != null) ? 
-            String.format(" (Владелец: %s %s, Школа: %s)", 
-                owner.getFirstName(), owner.getLastName(), owner.getSchool()) : 
-            " (Нет владельца)";
-        return String.format("Палочка #%d (Цена: %.2f, Статус: %s)%s", 
-               id, price, status, ownerInfo);
-    }
 }

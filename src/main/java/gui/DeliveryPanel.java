@@ -22,8 +22,6 @@ public class DeliveryPanel extends JPanel {
     private final DatabaseManager dbManager;
     private final DeliveryManager deliveryManager;
     private JTable deliveriesTable;
-    private JTable itemsTable;
-    private JSplitPane splitPane;
     
     public DeliveryPanel(DatabaseManager dbManager) {
         this.dbManager = dbManager;
@@ -68,12 +66,7 @@ public class DeliveryPanel extends JPanel {
         });        
         add(scrollPane, BorderLayout.CENTER);
     }
-    public void clearDetailsPanel() {
-        itemsTable.setModel(new DefaultTableModel(new Object[][]{}, new String[]{}));
-        splitPane.setBottomComponent(new JPanel());
-        revalidate();  
-        repaint();
-    }
+
 
     private void showDeliveryDetailsDialog(int deliveryId) {
     JDialog dialog = new JDialog(SwingUtilities.getWindowAncestor(this), "Детали поставки", Dialog.ModalityType.APPLICATION_MODAL);

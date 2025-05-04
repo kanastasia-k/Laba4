@@ -15,10 +15,9 @@ public class Wizard {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    private String school; // Гриффиндор, Слизерин и т.д.
+    private String school; 
     private String contactInfo;
 
-    // Конструкторы, геттеры и сеттеры
     public Wizard() {}
 
     public Wizard(String firstName, String lastName, LocalDate birthDate) {
@@ -27,7 +26,6 @@ public class Wizard {
         this.birthDate = birthDate;
     }
 
-    // Геттеры и сеттеры
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getFirstName() { return firstName; }
@@ -40,9 +38,4 @@ public class Wizard {
     public void setSchool(String school) { this.school = school; }
     public String getContactInfo() { return contactInfo; }
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
-
-    @Override
-    public String toString() {
-        return String.format("%s %s (Школа: %s)", firstName, lastName, school);
-    }
 }

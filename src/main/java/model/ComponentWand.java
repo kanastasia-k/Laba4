@@ -30,10 +30,4 @@ public class ComponentWand {
     public void setName(String name) { this.name = name; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    @Override
-    public String toString() {
-        return String.format("%s (ID: %d, Тип: %s, Количество: %d)", 
-               name, id, type, quantity);
-    }
 }
